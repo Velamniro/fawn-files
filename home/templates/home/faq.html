@@ -1,0 +1,13 @@
+{% extends 'home/ex.html' %}
+
+{% block import %} {% endblock %}
+
+{% block title %}FAQ — Fawn-Files{% endblock %}
+
+{% block content %}
+<dl class="mini-text">
+    <dt><h3>Почему дизайн сайта так похож на дизайн сайта <a href="https://aternos.org">Aternos</a>?</h3></dt>
+        <dd>Потому что я(автор сайта) вдохновился дизайном сайта <a href="https://aternos.org">Aternos</a>, но он был переписан багодоря чему небольшие изменения всё-таки присутствуют.</dd>
+</dl><br>
+<p class="mini-text">Пока больше часто задаваемых вопросов нету. Если у вас есть вопрос — пишите мне в дискорд. Ссылка на мои соц.сети есть в вкладке <a href="{% url 'about' %}">Обо мне</a></p>
+{% endblock %}

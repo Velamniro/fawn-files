@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home/css/ex.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/all.css' %}"></link> -->
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css"></link>
+    <!-- <script src="https://kit.fontawesome.com/fa90e37a37.js" crossorigin="anonymous"></script> -->
+    {% if theme == 'light' %}
+        <link rel="stylesheet" href="{% static 'css/light_theme.css' %}" id="theme-link">
+    {% elif theme == 'dark' %}
+        <link rel="stylesheet" href="{% static 'css/dark_theme.css' %}" id="theme-link">
+    {% elif theme == 'super_dark' %}
+        <link rel="stylesheet" href="{% static 'css/super_dark_theme.css' %}" id="theme-link">
+    {% endif %}
+    {% block import %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header class="header">
+        <a class="img" href="{% url 'home' %}">
+            {% if theme == 'light' %}
+                <img class="img-logo" src="{% static 'home/img/light_logo.svg' %}"></a>
+            {% elif theme == 'dark' %}
+                <img class="img-logo" src="{% static 'home/img/dark_logo.svg' %}"></a>
+            {% elif theme == 'super_dark' %}
+                <img class="img-logo" src="{% static 'home/img/super_dark_logo.svg' %}"></a>                
+            {% endif %}
+        <div class="buttons">
+            <a href="{% url 'home' %}"><button class="hb home">Главная</button></a>
+            <a href="{% url 'about' %}"><button class="hb aboutme">Обо мне</button></a>
+            <a href="{% url 'faq' %}"><button class="hb faq">FAQ</button></a>
+        </div>
+        <div class="auth">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'user_profile' request.user.profile.pk %}"><img class="avatar" src="{{ user.avatar.url }}"></img></a>
+                <a href="{% url 'logout' %}"><button class="hb hbl logout">Выйти</button></a>
+            {% else %}
+                <a href="{% url 'register' %}"><button class="hb hbr register">Зарегистрироваться</button></a><br>
+                <a href="{% url 'login' %}"><button class="hb hbr login">Войти</button></a>
+            {% endif %}
+        </div>
+    </header>
+    <div class="change_theme">
+        <div id="themes" class="dropdown_menu">
+            {% for t in themes %}
+                <a href="{% url 'change_theme' t %}"><i class="fas {{ themes|get_item:t }} change_theme"></i></a><br>
+            {% endfor %}
+        </div>
+        <button class="dropdown_toogle change_theme" data-easy-toggle="#themes" data-easy-class="show" data-easy-rcoe>
+            {% if theme == 'light' %}
+            <i class="fas fa-sun"></i>
+            {% elif theme == 'dark' %}
+            <i class="fas fa-moon"></i>
+            {% elif theme == 'super_dark' %}
+            <i class="fas fa-moon-stars"></i>
+            {% endif %}
+        </button>
+    </div>
+    {% block content %}{% endblock %}
+    <script>
+        /**
+         * EasyToggler 1.2.0
+         * Simple class switcher on web elements. JavaScript only.
+         * GitHub: https://github.com/rah-emil/easy-toggler
+         *
+         * Copyright 2020 Rah Emil
+         *
+         * Released under the MIT License
+         *
+         * Released: July 21, 2020
+         * Latest updates: July 21, 2021
+        */
+
+        !function(){"use strict";document.addEventListener("click",function(t){const e=t.target.closest("[data-easy-toggle]");if(e){t.preventDefault();let a=e.getAttribute("data-easy-toggle"),s=e.getAttribute("data-easy-class");try{document.querySelectorAll("[data-easy-toggle]").forEach(t=>{t.hasAttribute("data-easy-parallel")||t===e||document.querySelector(t.getAttribute("data-easy-toggle")).classList.remove(t.getAttribute("data-easy-class"))}),document.querySelector(a).classList.toggle(s)}catch(t){console.warn("EasyToggler.js : Блок "+a+" не существует")}}if(!e){let e=document.querySelectorAll("[data-easy-rcoe]");Array.from(e).forEach.call(e,function(e){let a=e.getAttribute("data-easy-toggle"),s=e.getAttribute("data-easy-class");if(!t.target.closest(a))try{document.querySelector(a).classList.remove(s)}catch(t){console.warn("EasyToggler.js : Блок "+a+" не существует")}})}})}();
+    </script>
+</body>
+</html>

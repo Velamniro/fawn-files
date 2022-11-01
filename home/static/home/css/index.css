@@ -1,0 +1,52 @@
+.af {
+    float: right;
+    padding: 0.2em 0.36em;
+    font-size: 1.64em;
+    margin-left: 0;
+}
+
+.af:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+div.files {
+    margin-top: 3.75em;
+}
+
+.file_info {
+    border-radius: 0.4375em;
+    margin-top: 0.9em;
+    margin-bottom: 0.6em;
+    width: 100%;
+    display: block;
+}
+
+.file_info:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.title {
+    font-size: 1em;
+}
+
+.anons {
+    margin-left: 0.2em;
+}
+
+.date {
+    margin-right: 1em;
+    font-size: 0.35em;
+    float: right;
+}
+
+.version {
+    margin-left: 1em;
+    font-size: 0.35em;
+    float: left;
+}
+
+.type {
+    margin-left: 1em;
+    font-size: 0.35em;
+    float: left;
+}

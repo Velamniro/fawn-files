@@ -1,0 +1,22 @@
+{% extends 'home/ex.html' %}
+{% load static %}
+
+{% block import %}
+<link rel="stylesheet" href="{% static 'users/css/register.css' %}">
+{% endblock %}
+
+{% block title %}Регистрация — Fawn-Files{% endblock %}
+
+{% block content %}
+<h1 class="text big">Регистрация</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {% for f in form %}
+        <p><label class="form-label text reglog" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
+        <div class="form-error text reglog">{{ f.errors }}</div>
+    {% endfor %}
+    <button type="submit" class="b text">Зарегистрироваться</button>
+</form>
+
+{% endblock %}

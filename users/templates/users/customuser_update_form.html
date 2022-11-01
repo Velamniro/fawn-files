@@ -1,0 +1,23 @@
+{% extends 'home/ex.html' %}
+{% load static %}
+
+{% block import %}
+<link rel="stylesheet" href="{% static 'users/css/update_form.css' %}">
+{% endblock %}
+
+{% block title %}Редактирование профиля {{ profile.user.username }} — Fawn-Files{% endblock %}
+
+{% block content %}
+{% if profile.user.id == request.user.id %}
+<form method="post" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {% for f in form %}
+        <p><label class="form-label mini-text" for="{{ f.id_for_label }}">{{ f.label }}: </label><span class="{{ f.id_for_label }} text">{{ f }}</span></p>
+        <div class="form-error mini-text">{{ f.errors }}</div>
+    {% endfor %}
+    <button type="submit" class="edit">Отредактировать</button>
+{% endif %}
+
+    
+</form>
+{% endblock %}

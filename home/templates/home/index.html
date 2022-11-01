@@ -1,0 +1,72 @@
+{% extends 'home/ex.html' %}
+{% load static %}
+
+{% block import %}
+<link rel="stylesheet" href="{% static 'home/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% if theme == 'light' %}
+    <link rel="stylesheet" href="{% static 'home/css/light_theme.css' %}" id="theme-link2">
+{% elif theme == 'dark' %}
+    <link rel="stylesheet" href="{% static 'home/css/dark_theme.css' %}" id="theme-link2">
+{% elif theme == 'super_dark' %}
+    <link rel="stylesheet" href="{% static 'home/css/super_dark_theme.css' %}" id="theme-link2">
+{% endif %}
+<script defer src="{% static 'home/js/customselect.js' %}"></script>
+<script src="{% static 'home/js/main.js' %}"></script>
+{% if theme == None %}
+    <meta http-equiv="refresh" content="0; url='{% url 'change_theme' 'light' %}'" />
+{% endif %}
+{% endblock %}
+
+{% block title %}Главная — Fawn-Files{% endblock %}
+
+{% block content %}
+    <div class="selects">
+        <div id="select-1"></div>
+        <div id="select-2"></div>
+        <button class="af text" onclick="afClick()">Применить фильтры</button>
+    </div>
+    <div class="files">
+        {% if type != 'none' and version != 'none' %}
+            {% for el in files %}
+                {% if el.version.name == version and el.type.name == type %}
+                    <a href="{% url 'file-detail' el.slug %}">
+                    <button class="file_info">
+                        <p class="title text">{{ el.title }}</p>
+                        <p class="anons text">{{ el.anons }}</p>
+                        <p class="date text">{{ el.datetime }} по МСК</p>
+                        <p class="version text">{{ el.version.name }}</p>
+                        <p class="type text">{{ el.type.name }}</p>
+                    </button>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% elif type == 'none' and version != 'none' or type != 'none' and version == 'none' %}
+            {% for el in files %}
+                {% if el.version.name == version or el.type.name == type %}
+                <a href="{% url 'file-detail' el.slug %}">
+                <button class="file_info">
+                    <p class="title text">{{ el.title }}</p>
+                    <p class="anons text">{{ el.anons }}</p>
+                    <p class="date text">{{ el.datetime }} по МСК</p>
+                    <p class="version text">{{ el.version.name }}</p>
+                    <p class="type text">{{ el.type.name }}</p>
+                </button>
+                </a>
+                {% endif %}
+            {% endfor %}
+        {% else %}  
+            {% for el in files %}
+                <a href="{% url 'file-detail' el.slug %}">
+                <button class="file_info">
+                    <p class="title text">{{ el.title }}</p>
+                    <p class="anons text">{{ el.anons }}</p>
+                    <p class="date text">{{ el.datetime }} по МСК</p>
+                    <p class="version text">{{ el.version.name }}</p>
+                    <p class="type text">{{ el.type.name }}</p>
+                </button>
+                </a>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

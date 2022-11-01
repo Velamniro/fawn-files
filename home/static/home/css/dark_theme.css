@@ -1,0 +1,39 @@
+.file_info {
+    background-color: #373737;
+}
+
+.file_info:hover {
+    background-color: #464646;
+}
+
+.af {
+    background-color: #f4f4f4ca;
+    color: #373737;
+}
+
+.af:hover {
+    background-color: #373737;
+    color: #f4f4f4dd;
+}
+
+.select__toggle {
+    background-color: #f4f4f4ca;
+    border-color: #373737;
+}
+
+.select__dropdown {
+    border-bottom: #ccc;
+    background-color: #f4f4f4ca;
+}
+
+.select__option_selected {
+    background-color: #686868;
+}
+
+.select__option_selected::after {
+    color: #373737;
+}
+
+.select__option:hover {
+    background-color: #373737;
+}

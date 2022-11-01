@@ -1,0 +1,39 @@
+.file_info {
+    background-color: #171b1e;
+}
+
+.file_info:hover {
+    background-color: #0a0a0a;
+}
+
+.af {
+    background-color: #b9bdc0;
+    color: #171b1e;
+}
+
+.af:hover {
+    background-color: #171b1e;
+    color: #b9bdc0;
+}
+
+.select__toggle {
+    background-color: #b9bdc0;
+    border-color: #171b1e;
+}
+
+.select__dropdown {
+    border-bottom: #b9bdc0;
+    background-color: #b9bdc0;
+}
+
+.select__option_selected {
+    background-color: #a0a0a0;
+}
+
+.select__option_selected::after {
+    color: #171b1e;
+}
+
+.select__option:hover {
+    background-color: #9b9b9b;
+}
