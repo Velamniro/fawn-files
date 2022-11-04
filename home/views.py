@@ -28,7 +28,7 @@ class Home(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
-        return Files.objects.filter().select_related('version').select_related('type')
+        return Files.objects.order_by('-datetime').select_related('version').select_related('type')
 
 
 def about(request):
