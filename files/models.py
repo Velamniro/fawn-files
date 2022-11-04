@@ -15,7 +15,8 @@ class Files(models.Model):
     datetime = models.DateTimeField('Дата публикации', auto_now_add=True)
     version = models.ForeignKey('Version', on_delete=models.PROTECT, null=True)
     type = models.ForeignKey('Type', on_delete=models.PROTECT, null=True)
-    favourite = models.ManyToManyField(CustomUser, default=None, blank=True, related_name='favourite_product')
+    favourite = models.ManyToManyField(CustomUser, default=None, blank=True, related_name='favourite')
+    objects = models.Manager()
 
     def __str__(self):
         return self.title

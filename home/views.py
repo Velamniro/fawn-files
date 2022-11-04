@@ -27,6 +27,9 @@ class Home(DataMixin, ListView):
         c_def = self.get_user_context()
         return dict(list(context.items()) + list(c_def.items()))
 
+    def get_queryset(self):
+        return Files.objects.filter().select_related('version').select_related('type')
+
 
 def about(request):
     local_themes = themes.copy()

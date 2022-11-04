@@ -21,6 +21,7 @@
 {% block title %}Главная — Fawn-Files{% endblock %}
 
 {% block content %}
+    <a href="{% url 'favourites_list' %}"><button class="fav text"><i class="fas fa-star ifav"></i>Избранные</button></a>
     <div class="selects">
         <div id="select-1"></div>
         <div id="select-2"></div>

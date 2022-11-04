@@ -10,4 +10,6 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout'),
     path('<int:pk>/', views.ShowProfilePageView.as_view(), name='user_profile'),
     path('edit_profile/<int:pk>/', views.EditProfile.as_view(), name='edit_profile'),
+    path('favourite/<int:pk>/', views.favourite_add, name='favourite_add'),
+    path('favourites/', views.Favourites.as_view(), name='favourites_list'),
 ]

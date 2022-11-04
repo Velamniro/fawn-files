@@ -2,8 +2,12 @@
     background-color: #ccc;
 }
 
-.af {
+.af, .fav {
     background-color: #2b87d3;
+    color: #fff;
+}
+
+.ifav {
     color: #fff;
 }
 

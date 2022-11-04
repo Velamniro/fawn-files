@@ -1,0 +1,32 @@
+{% extends 'home/ex.html' %}
+{% load static %}
+
+{% block import %}
+<!-- <link rel="stylesheet" href="{% static 'home/css/main.css' %}"> -->
+<link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+{% if theme == 'light' %}
+    <link rel="stylesheet" href="{% static 'home/css/light_theme.css' %}" id="theme-link2">
+{% elif theme == 'dark' %}
+    <link rel="stylesheet" href="{% static 'home/css/dark_theme.css' %}" id="theme-link2">
+{% elif theme == 'super_dark' %}
+    <link rel="stylesheet" href="{% static 'home/css/super_dark_theme.css' %}" id="theme-link2">
+{% endif %}
+<!-- <script defer src="{% static 'home/js/customselect.js' %}"></script>
+<script src="{% static 'home/js/main.js' %}"></script> -->
+{% endblock %}
+
+{% block title %}Избранное — Fawn-Files{% endblock %}
+
+{% block content %}
+{% for el in favourites %}
+<a href="{% url 'file-detail' el.slug %}">
+<button class="file_info">
+    <p class="title text">{{ el.title }}</p>
+    <p class="anons text">{{ el.anons }}</p>
+    <p class="date text">{{ el.datetime }} по МСК</p>
+    <p class="version text">{{ el.version.name }}</p>
+    <p class="type text">{{ el.type.name }}</p>
+</button>
+</a>
+{% endfor %}
+{% endblock %}

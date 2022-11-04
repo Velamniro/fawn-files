@@ -6,8 +6,12 @@
     background-color: #0a0a0a;
 }
 
-.af {
+.af, .fav {
     background-color: #b9bdc0;
+    color: #171b1e;
+}
+
+.ifav {
     color: #171b1e;
 }
 
