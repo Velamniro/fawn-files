@@ -2,6 +2,13 @@ from django.contrib import admin
 from .models import *
 
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    search_fields = ('user', 'body')
+    list_display = ('body', 'file', 'created_on')
+    list_filter = ('created_on',)
+
+
 @admin.register(Files)
 class FilesAdmin(admin.ModelAdmin):
     search_fields = ('title', 'full_txt')

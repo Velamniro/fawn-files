@@ -2,12 +2,12 @@ header {
     background: #171b1e;
 }
 
-button.edit, button.b, button.download:hover {
+button.edit, button.b, button.download:hover, .cb:hover {
     color: #b9bdc0;
     background-color: #000;
 }
 
-button.edit:hover, button.b:hover, button.download {
+button.edit:hover, button.b:hover, button.download, .cb, #id_body {
     color: #171b1e;
     background-color: #b9bdc0;
 }

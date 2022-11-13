@@ -6,12 +6,12 @@ button.edit {
     color: #2b87d3;
 }
 
-button.edit:hover, button.b:hover, button.edit:hover, button.download {
+button.edit:hover, button.b:hover, button.edit:hover, button.download, .cb {
     color: #fff;
     background-color: #2b87d3;
 }
 
-button.download:hover {
+button.download:hover, .cb:hover, #id_body {
     color: #2b87d3;
     background-color: #fff;
 }

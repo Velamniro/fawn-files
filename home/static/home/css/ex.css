@@ -142,3 +142,7 @@ a {
 .big {
     font-size: 2em;
 }
+
+.font_play {
+    font-family: 'Play', sans-serif;
+}

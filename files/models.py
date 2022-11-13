@@ -26,6 +26,21 @@ class Files(models.Model):
         verbose_name_plural = 'Файлы'
 
 
+class Comment(models.Model):
+    file = models.ForeignKey(Files, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='comments')
+    body = models.TextField('Текст')
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created_on']
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return f'{self.body}:{self.file.pk}:{self.user}'
+
+
 class Version(models.Model):
     name = models.CharField('Название', max_length=40, db_index=True)
 

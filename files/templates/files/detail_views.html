@@ -15,5 +15,25 @@
         {% if request.user.is_authenticated %}
             <a href="{% url 'favourite_add' file.pk %}"><i class="{{ fav }} fa-star"></i></a></h6>
         {% endif %}
-    <a href="{{ file.url }}" target="_blank"><button class="download text">Скачать файл/файлы</button></a>
+    <a href="{{ file.url }}" target="_blank"><button class="download text">Скачать файл/файлы</button></a><br>
+    <form method="post" class="mini-text">
+        {% if request.user.is_authenticated %}
+          {% for f in comment_form %}
+            <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
+            <div class="form-error">{{ f.errors }}</div>
+          {% endfor %}
+          {% csrf_token %}
+          <button type="submit" class="cb">Оставить</button><br>
+        {% endif %}
+    {% for comment in comments %}
+        <div class="comments" style="padding: 10px;">
+          <p class="font-weight-bold">
+            {{ comment.user.username }}
+            <span class=" text-muted font-weight-normal">
+              {{ comment.created_on }}
+            </span>
+          </p>
+          {{ comment.body | linebreaks }}
+        </div>
+        {% endfor %}
 {% endblock %}
