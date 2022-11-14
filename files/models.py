@@ -13,8 +13,8 @@ class Files(models.Model):
     slug = models.SlugField('URL', unique=True, db_index=True)
     full_txt = models.TextField('Полное описание')
     datetime = models.DateTimeField('Дата публикации', auto_now_add=True)
-    version = models.ForeignKey('Version', on_delete=models.PROTECT, null=True)
-    type = models.ForeignKey('Type', on_delete=models.PROTECT, null=True)
+    version = models.ManyToManyField('Version', blank=False, related_name='files')
+    type = models.ForeignKey('Type', on_delete=models.PROTECT, null=True, related_name='files')
     favourite = models.ManyToManyField(CustomUser, default=None, blank=True, related_name='favourite')
     objects = models.Manager()
 

@@ -11,7 +11,11 @@
     <h1 class="text">{{ file.title }}</h1>
     <h6 class="date mini-text">{{ file.datetime }} по МСК</h6>
     <p class="full_txt mini-text">{{ file.full_txt }}</p>
-    <h6 class="version_type mini-text">{{ file.version.name }} {{ file.type.name }} 
+    <h6 class="version_type mini-text">
+      {% for ver in file.version.all %}
+        {{ ver }},
+      {% endfor %}
+       {{ file.type.name }} 
         {% if request.user.is_authenticated %}
             <a href="{% url 'favourite_add' file.pk %}"><i class="{{ fav }} fa-star"></i></a></h6>
         {% endif %}
@@ -28,7 +32,10 @@
     {% for comment in comments %}
         <div class="comments" style="padding: 10px;">
           <p class="font-weight-bold">
-            {{ comment.user.username }}
+            <a href="{% url 'user_profile' comment.user.profile.pk %}" class="text-color">
+              <img src="{{ comment.user.avatar.url }}" style="width: 2em; height: 2em; border-radius: 0.2em;">
+              {{ comment.user.username }}
+            </a>
             <span class=" text-muted font-weight-normal">
               {{ comment.created_on }}
             </span>

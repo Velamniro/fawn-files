@@ -26,7 +26,7 @@ class FilesDetailView(DataMixin, DetailView):
 
     def get_queryset(self):
         slug = self.kwargs.get('slug', '')
-        return super().get_queryset().filter(slug=slug).select_related('version').select_related('type')
+        return super().get_queryset().filter(slug=slug).prefetch_related('version').select_related('type')
 
     def post(self, request, *args, **kwargs):
         comment_form = CommentForm(data=request.POST)

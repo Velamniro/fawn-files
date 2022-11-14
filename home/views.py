@@ -18,17 +18,23 @@ class Home(DataMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(Home, self).get_context_data(**kwargs)
-        context['type'] = "none"
-        context['version'] = "none"
-        if self.request.method == "GET" and self.request.GET:
-            context['type'] = self.request.GET.get("type")
-            context['version'] = self.request.GET.get("version")
+        context['type'] = self.request.GET.get("type")
+        context['version'] = self.request.GET.get("version")
 
         c_def = self.get_user_context()
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_queryset(self):
-        return Files.objects.order_by('-datetime').select_related('version').select_related('type')
+        if self.request.method == "GET" and self.request.GET:
+            type = self.request.GET.get("type")
+            version = self.request.GET.get("version")
+            if type != 'none' and version != 'none':
+                return Files.objects.filter(type=type, version=version).order_by('-datetime').prefetch_related('version').select_related('type')
+            elif type != 'none':
+                return Files.objects.filter(type=type).order_by('-datetime').prefetch_related('version').select_related('type')
+            elif version != 'none':
+                return Files.objects.filter(version=version).order_by('-datetime').prefetch_related('version').select_related('type')
+        return Files.objects.order_by('-datetime').prefetch_related('version').select_related('type')
 
 
 def about(request):
