@@ -1,5 +1,5 @@
 /venv.bat
-/db?.sqlite3
+/*.sqlite3
 /.idea
 /media/avatars
 /rs.bat
