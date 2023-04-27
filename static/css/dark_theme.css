@@ -1,0 +1,43 @@
+header {
+    background: #373737;
+}
+
+button.edit, button.b, button.download:hover, .cb:hover {
+    color: #f4f4f4ca;
+    background-color: #111;
+}
+
+button.edit:hover, button.b:hover, button.download, .cb, #id_body {
+    color: #373737;
+    background-color: #f4f4f4ca;
+}
+
+button {
+    background-color: #f4f4f4;
+}
+
+button.hb {
+    background-color: #373737;
+    color: #f4f4f4dd;
+}
+
+button.hb:hover {
+    background-color: #f4f4f4dd;
+    color: #373737;
+}
+
+.text, .mini-text {
+    color: #f4f4f4dd;
+}
+
+body {
+    background-color: #111111;
+}
+
+i {
+    color: white;
+}
+
+.text-color {
+    color: #f4f4f4dd;
+}

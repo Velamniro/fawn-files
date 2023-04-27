@@ -2,6 +2,8 @@ import sys
 from django.db import models
 
 from users.models import CustomUser
+from django import forms
+
 
 sys.path.insert(0, '/fawn_files/home')
 
@@ -16,6 +18,7 @@ class Files(models.Model):
     version = models.ManyToManyField('Version', blank=False, related_name='files')
     type = models.ForeignKey('Type', on_delete=models.PROTECT, null=True, related_name='files')
     favourite = models.ManyToManyField(CustomUser, default=None, blank=True, related_name='favourite')
+    creator = models.ForeignKey(CustomUser, on_delete=models.PROTECT, null=True, related_name='files')
     objects = models.Manager()
 
     def __str__(self):

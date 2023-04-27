@@ -26,7 +26,7 @@ button.hb:hover {
     color: #373737;
 }
 
-.text, .mini-text {
+.text, .mini-text, a {
     color: #f4f4f4dd;
 }
 

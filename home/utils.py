@@ -2,14 +2,22 @@ import datetime
 
 from django.conf import settings
 from django.http import HttpRequest
-from django.shortcuts import redirect
 from django.template.defaulttags import register
+from django.template.defaultfilters import slugify as django_slugify
 
 themes = {
     'light': 'fa-sun',
     'dark': 'fa-moon',
     'super_dark': 'fa-moon-stars',
 }
+
+alphabet = {
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z', 'и': 'i',
+    'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't',
+    'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ы': 'i', 'э': 'e', 'ю': 'yu',
+    'я': 'ya'
+}
+
 
 
 class DataMixin:
@@ -49,4 +57,12 @@ def get_theme(request):
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
+
+
+def slugify(title):
+    """
+    Overriding django slugify that allows to use russian words as well.
+    """
+    return django_slugify(''.join(alphabet.get(symbol, '-') for symbol in title.lower()))
+
 

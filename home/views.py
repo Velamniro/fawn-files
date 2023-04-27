@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView
 
+from files.forms import AddFileForm
 from files.models import Files
 from .utils import *
 
@@ -37,16 +38,27 @@ class Home(DataMixin, ListView):
         return Files.objects.order_by('-datetime').prefetch_related('version').select_related('type')
 
 
-def about(request):
+def addfile(request):
     local_themes = themes.copy()
     local_themes.pop(get_theme(request))
-    return render(request, 'home/about.html', {'theme': get_theme(request), 'themes': local_themes})
+    if request.method == "POST":
+        form = AddFileForm(request.POST)
 
-
-def faq(request):
-    local_themes = themes.copy()
-    local_themes.pop(get_theme(request))
-    return render(request, 'home/faq.html', {'theme': get_theme(request), 'themes': local_themes})
+        if form.is_valid():
+            try:
+                file = form.save(commit=False)
+                file.slug = slugify(form.cleaned_data['title'])
+                if file.slug == '':
+                    return redirect('home')
+                file.creator = request.user
+                file.save()
+                form.save_m2m()
+                return redirect('home')
+            except:
+                form.add_error(None, 'Ошибка добавления файла')
+    else:
+        form = AddFileForm()
+    return render(request, 'home/addfile.html', {'form': form, 'theme': get_theme(request), 'themes': local_themes})
 
 
 def change_theme(request, theme):

@@ -39,10 +39,11 @@ button.hbr {
 }
 
 button.login {
-    margin-left: 4.8em;
+    margin-left: 19em;
 }
 button.register {
     margin-bottom: -0.3em;
+    margin-left: 15em;
 }
 
 button.hbl {
@@ -130,6 +131,8 @@ button {
 a {
     text-decoration: none;
 }
+
+
 
 .text {
     font: bold 0.5em 'Play', sans-serif;

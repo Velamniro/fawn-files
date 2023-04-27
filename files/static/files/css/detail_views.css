@@ -14,6 +14,7 @@ h1.text {
     font-size: 1em;
 }
 
+
 .download {
     float: right;
     margin-top: -1.3em;
@@ -36,4 +37,10 @@ h1.text {
     width: 50%;
     height: 3em;
     font-family: 'Play', sans-serif;
+}
+
+.creator {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: underline;
 }

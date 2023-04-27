@@ -30,7 +30,7 @@ button.hb:hover {
     color: #2d3943;
 }
 
-.text, .mini-text {
+.text, .mini-text, a {
     color: #2b87d3;
 }
 
