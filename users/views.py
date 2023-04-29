@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, ListView
 from django.core.exceptions import PermissionDenied
@@ -108,7 +108,6 @@ def favourite_add(request, pk):
     else:
         file.favourite.add(request.user)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
 
 
 def logout_user(request):

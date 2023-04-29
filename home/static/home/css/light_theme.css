@@ -17,8 +17,9 @@
 }
 
 .select__toggle {
-    background-color: #0277bd;
+    background-color: #2b87d3;
     border-color: #ccc;
+    color: #fff;
 }
 
 .select__dropdown {

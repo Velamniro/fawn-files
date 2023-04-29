@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 
 from files.forms import AddFileForm
@@ -39,8 +39,12 @@ class Home(DataMixin, ListView):
 
 
 def addfile(request):
-    local_themes = themes.copy()
-    local_themes.pop(get_theme(request))
+    theme = get_theme(request)
+    if theme is None:
+        return redirect('change_theme', theme='light')
+    else:
+        local_themes = themes.copy()
+        local_themes.pop(theme)
     if request.method == "POST":
         form = AddFileForm(request.POST)
 

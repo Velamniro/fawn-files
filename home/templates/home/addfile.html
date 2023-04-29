@@ -8,7 +8,7 @@
 {% block title %}Добавить файл — Fawn-Files{% endblock %}
 
 {% block content %}
-{% if request.user.id %}
+{% if request.user.is_authenticated %}
     <form action="{% url 'addfile' %}" method="post">
         {% csrf_token %}
 
@@ -20,5 +20,7 @@
         {% endfor %}
         <button type="submit" class="b text">Добавить</button>
     </form>
+{% else %}
+    <p class="mini-text" style="font-size: 7em;">Сначала зарегестрируйтесь</p>
 {% endif %}
 {% endblock %}

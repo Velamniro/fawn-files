@@ -13,9 +13,6 @@
 {% endif %}
 <script defer src="{% static 'home/js/customselect.js' %}"></script>
 <script src="{% static 'home/js/main.js' %}"></script>
-{% if theme == None %}
-    <meta http-equiv="refresh" content="0; url='{% url 'change_theme' 'light' %}'" />
-{% endif %}
 {% endblock %}
 
 {% block title %}Главная — Fawn-Files{% endblock %}

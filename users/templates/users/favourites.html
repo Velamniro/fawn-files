@@ -24,7 +24,10 @@
     <p class="title text">{{ el.title }}</p>
     <p class="anons text">{{ el.anons }}</p>
     <p class="date text">{{ el.datetime }} по МСК</p>
-    <p class="version text">{{ el.version.name }}</p>
+    <p class="version text">
+        {% for ver in el.version.all %}
+            {{ ver }},
+        {% endfor %}</p>
     <p class="type text">{{ el.type.name }}</p>
 </button>
 </a>
